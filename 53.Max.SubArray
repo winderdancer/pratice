@@ -1,0 +1,36 @@
+// https://leetcode.com/problems/maximum-subarray/discuss/
+using System;
+
+public class Test {
+ public static int MaxSubArray(int[] nums) {
+
+  if (nums == null || nums.Length == 0) {
+   return 0;
+  }
+
+  int tempMax = nums[0];
+  int currentMax = nums[0];
+
+  for (int i = 1; i < nums.Length; i++) {
+   if (currentMax < 0) {
+    currentMax = currentMax >= nums[i] ? currentMax : nums[i];
+   } else {
+    currentMax = currentMax + nums[i];
+   }
+
+   if (tempMax <= currentMax) {
+    tempMax = currentMax;
+   }
+  }
+
+  return tempMax;
+
+ }
+
+ public static void Main() {
+  int[] arraytoTest = new int[] {
+   -2, -3, -1, 1, 100, -1, 6
+  };
+  Console.WriteLine(MaxSubArray(arraytoTest));
+ }
+}
